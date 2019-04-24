@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Channel
+from message.models import Message
 from django.db.models import Q
 
 
@@ -26,6 +27,8 @@ def search_channel(request):
 
 def show_channel(request, channel_id):
     channel = Channel.objects.get(id=channel_id)
+    messages = Message.objects.filter(channel_id=channel.id)
     return render(request, 'channel.html', {
-            'channel': channel
+            'channel': channel,
+            'messages': messages
         })
