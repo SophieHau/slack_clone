@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container-fluid">
+	<div class="row mt-5">
+		<div class="col-md-3 mt-2 ml-3 mr-5">
+			<h1>{{ channel.name }} channel</h1>
+			<div class="card mt-3">
+			  <div class="card-body">
+			    <h5 class="card-text">{{ channel.description }}</h5>
+			    <small>Channel opened by: {{ channel.creator.user }}</small>
+			  </div>
+			</div>
+		    
+			<div class="card mt-3">
+			  <div class="card-body">
+			    <h5 class="card-title">In the channel:</h5>
+				<p class="card-text">Members</p>			  
+			  </div>
+			</div>
+		</div>
+		<div class="col-md-8">
+			
+		</div>
+</div>
+
+{% endblock %}

@@ -4,6 +4,7 @@ from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.conf import settings
 
 
 def login_view(request):
@@ -20,17 +21,17 @@ def login_view(request):
 
     return render(request, 'login.html')
 
+
 @login_required(login_url='/accounts/login/')
 def show_profile(request, profile_id):
     user_profile = Profile.objects.get(pk=profile_id)
-    if request.method == 'POST':
-        if request.FILES['profile_pic']:
-          profile_pic = request.FILES['profile_pic']
-          fs = FileSystemStorage(location='media/images', base_url='/media/images')
-          filename = fs.save(profile_pic.name, profile_pic)
-          uploaded_file_url = fs.url(filename)
-          user_profile.pic = uploaded_file_url
-          user_profile.save()
+    if request.method == 'POST' and request.FILES['image']:
+        profile_pic = request.FILES['image']
+        fs = FileSystemStorage(location='media/images', base_url='/media/images/')
+        filename = fs.save(profile_pic.name, profile_pic)
+        uploaded_file_url = fs.url(filename)
+        user_profile.pic = uploaded_file_url
+        user_profile.save()
 
     return render(request, 'profile.html', {
             'profile': user_profile,

@@ -16,9 +16,12 @@
 	      <li class="nav-item active">
 	        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
 	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="{% url 'chats:channels' %}">Channels</a>
+	      </li>
 	      {% if user.is_authenticated %}
 	      <li class="nav-item">
-	        <a class="nav-link" href="#">Your Profile</a>
+	        <a class="nav-link" href="{% url 'user_profile:show_profile' user.profile.id %}">Your Profile</a>
 	      </li>
 	      {% else %}
 	      <li class="nav-item">
@@ -28,9 +31,7 @@
 	    </ul>
 	    {% if user.is_authenticated %}
 	    <span class="navbar-text">
-	    	{% for profile in user.profiles.all %}
-	      <a href="{% url 'user_profile:show_profile' profile.id %}"> {{ user.username }} </a>
-	      {% endfor %}
+	      <a href="{% url 'user_profile:show_profile' user.profile.id %}"> {{ user.username }} </a>
 	      <a href="{% url 'user_profile:logout' %}">Logout</a>
 	    </span>
 	    {% else %}
