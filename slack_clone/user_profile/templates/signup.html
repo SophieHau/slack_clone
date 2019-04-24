@@ -3,24 +3,26 @@
 
 <div class="container-fluid">
 	<div class="row mt-5 justify-content-center">
-		<div class="col-3">
-			<h1>Signup</h1>
-			<form method='POST'>
-				{% csrf_token %}
-			  <div class="form-group">
-			    <label for="username">Username</label>
-			    <input type="text" class="form-control" name="username" placeholder="Enter username">
-			  </div>
-			  <div class="form-group">
-			    <label>Password</label>
-			    <input type="password" class="form-control" name="password" placeholder="Password">
-			  </div>
-			  <div class="form-group">
-			    <label>Bio</label>
-			    <input type="text" class="form-control" name="bio" placeholder="Short bio">
-			  </div>
-			  <button type="submit" class="btn btn-primary">Submit</button>
-			</form>
+		<div class="col-3 text-center">
+			 <form class="form-signup text-center" method='POST'>
+			 	{% csrf_token %}
+				  <img class="mb-4" src="https://junkee.com/wp-content/uploads/2019/03/slack.jpg" alt="" width="100" height="72">
+				  <h1 class="h3 mb-3 font-weight-normal">Please create an account</h1>
+				  <label for="first_name" class="sr-only">First Name</label>
+				  <input type="text" name="first_name" id="first_name" class="form-control mb-2" placeholder="First Name" required="" autofocus="">
+				  <label for="last_name" class="sr-only">Last Name</label>
+				  <input type="text" name="last_name" id="last_name" class="form-control mb-2" placeholder="Last Name" required="" autofocus="">
+				  <label for="bio" class="sr-only">Bio</label>
+				  <textarea class="form-control mb-2" id="bio" rows="3" name="bio" placeholder="Short Bio"></textarea>
+				  <label for="email" class="sr-only">Email</label>
+				  <input type="email" name="email" id="email" class="form-control mb-2" placeholder="Email" required="" autofocus="">
+				  <label for="username" class="sr-only">Username</label>
+				  <input type="text" name="username" id="iusername" class="form-control mb-2" placeholder="Username" required="" autofocus="">
+				  <label for="inputPassword" class="sr-only">Password</label>
+				  <input type="password" name="password" id="inputPassword" class="form-control mb-3" placeholder="Password" required="">
+				  <button class="btn btn-lg btn-info btn-block" type="submit">Sign up</button>
+				  <p class="mt-5 mb-3 text-muted">©2019</p>
+			 </form>				
 		</div>
 	</div>
 </div>

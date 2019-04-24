@@ -4,3 +4,4 @@ slack_clone/user_profile/__pycache__/
 slack_clone/user_profile/migrations/
 slack_clone/db.sqlite3
 slack_clone/seeds.py
+slack_clone/media/

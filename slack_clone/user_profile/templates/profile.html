@@ -1,27 +1,92 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="container-fluid">
-	<div class="row mt-3">
-		<div class="col-6">
-			<div class="card" style="width: 18rem;">
-				<img class="card-img-top" src="#" alt="My image">
-		  		<div class="card-body">
-					<h5 class="card-title">#</h5>
-				<form method="POST" action="#" enctype="multipart/form-data" action="">
-					{% csrf_token %}
-					<div class="form-group">
-					<p class="card-text mt-3">Change your profile picture:</p>
-			    	<input class="form-control-file" type="file" name="profile_pic"><br>
-			    	<button type="submit" class="btn btn-primary">Upload</button>
-			    	<p class="card-text mt-3">Bio:</p>
-			    	<p class="card-text mt-3">#</p>
-			    	</div>
-				</form>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+
+<div class="container">
+            <form method="post">
+                <div class="row mt-5">
+                    <div class="col-md-4">
+                    	<div class="profile-img">
+                            <img src="{{ profile.pic }}">
+                        </div>
+                        <form method="POST" action="{% url 'user_profile:show_profile' profile.id %}" enctype="multipart/form-data" action="">
+                            {% csrf_token %}
+                            <div class="form-group">
+                            <p class="card-text mt-3">Change your profile picture:</p>
+                            <input class="form-control-file" type="file" name="profile_pic"><br>
+                            <button type="submit" class="btn btn-primary">Upload</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="profile-head">
+                                    <h5>
+                                        {{ profile.user.first_name }} {{ profile.user.last_name }}
+                                    </h5>
+                         
+                            <ul class="list-group list-group-flush mt-5">
+                                <li class="list-group-item mt-5">
+
+                                </li>
+                            </ul>
+                        </div>
+                    
+                    
+               <!--  <div class="row mt-3"> -->
+                    <!-- <div class="col-md-4">
+                        
+                    </div> -->
+                   <!--  <div class="col-md-8"> -->
+                        <div class="tab-content profile-tab" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            			<div class="row">
+                                            <div class="col-md-5 ml-3">
+                                                <label>First Name</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{ profile.user.first_name }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-5 ml-3">
+                                                <label>Last Name</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{ profile.user.last_name }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-5 ml-3">
+                                                <label>Username</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{ profile.user.username }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-5 ml-3">
+                                                <label>Email</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <a href="{{ profile.user.email }}" target="_top">{{ profile.user.email }}</a>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-5 ml-3">
+                                                <label>Bio</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{ profile.bio }}</p>
+                                            </div>
+                                        </div>
+                            	</div>                             
+                            </div>
+                            </div>
+                <!-- </div> -->
+                        </div>
+                    </div>
+                </div>
+            </form>           
+        </div>
 
 {% endblock %}

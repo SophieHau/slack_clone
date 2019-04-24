@@ -3,19 +3,18 @@
 
 <div class="container-fluid">
 	<div class="row mt-5 justify-content-center">
-		<div class="col-3">
-			<form method='POST'>
-				{% csrf_token %}
-			  <div class="form-group">
-			    <label for="username">Username</label>
-			    <input type="text" class="form-control" name="username" placeholder="Enter username">
-			  </div>
-			  <div class="form-group">
-			    <label>Password</label>
-			    <input type="password" class="form-control" name="password" placeholder="Password">
-			  </div>
-			  <button type="submit" class="btn btn-primary">Submit</button>
-			</form>
+		<div class="col-3 text-center">
+			 <form class="form-signin text-center" method='POST'>
+			 	{% csrf_token %}
+				  <img class="mb-4" src="https://junkee.com/wp-content/uploads/2019/03/slack.jpg" alt="" width="100" height="72">
+				  <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+				  <label for="username" class="sr-only">Username</label>
+				  <input type="text" name="username" id="iusername" class="form-control mb-2" placeholder="Username" required="" autofocus="">
+				  <label for="inputPassword" class="sr-only">Password</label>
+				  <input type="password" name="password" id="inputPassword" class="form-control mb-3" placeholder="Password" required="">
+				  <button class="btn btn-lg btn-info btn-block" type="submit">Sign in</button>
+				  <p class="mt-5 mb-3 text-muted">©2019</p>
+			 </form>				
 		</div>
 	</div>
 </div>
