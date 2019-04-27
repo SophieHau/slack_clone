@@ -24,6 +24,7 @@
 		<div class="col-md-8">
 			<h1>Channels:</h1>
 			{% for channel in channels %}
+			{% if channel.description != None %}
 			<div class="card mt-3">
 			  <div class="card-body ">
 			    <h5 class="card-title"> <a href="{% url 'chats:channel' channel.id %}" class="btn btn-outline-info btn-sm">Join</a> {{ channel.name }}</h5>
@@ -31,6 +32,7 @@
 			    <small>{{ channel.creator.user }}</small>
 			  </div>
 			</div>
+			{% endif %}
 			{% endfor %}
 		</div>
 </div>

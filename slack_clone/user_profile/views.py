@@ -15,7 +15,7 @@ def login_view(request):
         if user is not None:
             login(request, user)
             profile = Profile.objects.get(user_id=user.id)
-            return redirect('user_profile:show_profile', profile_id=profile.id)
+            return redirect('chats:channels')
         else:
             return redirect('user_profile:signup')
 
@@ -43,7 +43,6 @@ def logout_view(request):
 
 
 def signup_view(request):
-
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -58,3 +57,19 @@ def signup_view(request):
         return redirect('user_profile:show_profile', profile_id=profile.id)
 
     return render(request, 'signup.html')
+
+def show_profiles(request):
+    profiles = Profile.objects.all()
+    return render (request, 'profiles_list.html', {
+            'profiles': profiles,
+        })
+
+def add_friend(request, friend_id):
+        user = request.user
+        user_profile = Profile.objects.get(user_id=user.id)
+        friend = Profile.objects.get(id=friend_id)
+        user_profile.friends.add(friend)
+        user_profile.save()
+        return redirect('user_profile:show_profiles')
+
+

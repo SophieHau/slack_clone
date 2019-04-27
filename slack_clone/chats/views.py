@@ -4,8 +4,7 @@ from message.models import Message
 from django.db.models import Q
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-
-
+from user_profile.models import Profile
 
 
 def show_channels(request):
@@ -50,4 +49,17 @@ def add_channel(request):
         channel.save()
         return redirect('chats:channels')
 
-
+def open_chat(request, friend_id):
+    friend = User.objects.get(id=friend_id)
+    user = request.user
+    channel = Channel(name="{} & {}".format(user.username, friend.username), description=None, creator_id=user.id)
+    channel.save(False)
+    channel.users.add(friend)
+    channel.save(False)
+    channel.users.add(user)
+    channel.save()
+    messages = Message.objects.filter(channel_id=channel.id)
+    return render(request, 'channel.html', {
+            'channel': channel,
+            'messages': messages,
+        })

@@ -2,6 +2,7 @@ from django.db import models
 from user_profile.models import Profile
 from chats.models import Channel
 
+
 class Message(models.Model):
     text = models.TextField()
     pub_date = models.DateTimeField()

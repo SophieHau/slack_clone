@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container-fluid">
+	<div class="row mt-5">
+		<div class="col-md-3 mt-2 mr-5">
+			<form class="form-inline my-2 my-lg-0" method='POST' action="{% url 'chats:search_channels' %}">
+				{% csrf_token %}
+		      <input class="form-control mr-sm-2" type="search" placeholder="Search" name="search" aria-label="Search">
+		      <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+		    </form>
+		    <hr>				
+		</div>
+		<div class="col-md-8">
+			<h1>Profiles:</h1>
+			{% for profile in profiles %}
+			<div class="card mt-3">
+			  <div class="card-body ">
+			  	{% if profile.user.username != user.username %}
+			    <h5 class="card-title"> {{ profile.user.username }} <a href="{% url 'user_profile:add_friend' profile.id %}" class="btn btn-outline-info btn-sm ml-3">Add friend</a> </h5>
+			    {% endif %}
+			  </div>
+			</div>
+			{% endfor %}
+		</div>
+</div>
+
+{% endblock %}

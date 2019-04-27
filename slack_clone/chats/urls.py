@@ -8,4 +8,5 @@ urlpatterns = [
 	path('channels/', views.show_channels, name='channels'),
 	path('channels/<int:channel_id>', views.show_channel, name='channel'),
 	path('channels/add', views.add_channel, name='add_channel'),
+	path('channels/add/chat/<int:friend_id>', views.open_chat, name='open_chat'),
 ]
