@@ -9,17 +9,26 @@
 		      <input class="form-control mr-sm-2" type="search" placeholder="Search" name="search" aria-label="Search">
 		      <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
 		    </form>
-		    
+		    <hr>
+		    <form class="form-signin text-center mt-5" method='POST' action="{% url 'chats:add_channel' %}">
+			 	{% csrf_token %}
+				  <img class="mb-4" src="https://junkee.com/wp-content/uploads/2019/03/slack.jpg" alt="" width="100" height="72">
+				  <h1 class="h3 mb-3 font-weight-normal">Open a new channel</h1>
+				  <label for="channel_name" class="sr-only">Name</label>
+				  <input type="text" name="channel_name" id="channel_name" class="form-control mb-2" placeholder="Name" required="" autofocus="">
+				  <label for="channel_description" class="sr-only">Description</label>
+				  <textarea class="form-control mb-2" id="bio" rows="3" name="channel_description" placeholder="Short Description"></textarea>
+				  <button class="btn btn-lg btn-outline-info btn-block" type="submit">Add</button>
+			 </form>				
 		</div>
 		<div class="col-md-8">
 			<h1>Channels:</h1>
 			{% for channel in channels %}
 			<div class="card mt-3">
-			  <div class="card-body">
-			    <h5 class="card-title">{{ channel.name }}</h5>
+			  <div class="card-body ">
+			    <h5 class="card-title"> <a href="{% url 'chats:channel' channel.id %}" class="btn btn-outline-info btn-sm">Join</a> {{ channel.name }}</h5>
 			    <p class="card-text">{{ channel.description }}.</p>
 			    <small>{{ channel.creator.user }}</small>
-			    <a href="{% url 'chats:channel' channel.id %}" class="btn btn-primary">Join</a>
 			  </div>
 			</div>
 			{% endfor %}

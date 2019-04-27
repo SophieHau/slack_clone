@@ -15,16 +15,20 @@
 			<div class="card mt-3">
 			  <div class="card-body">
 			    <h5 class="card-title">In the channel:</h5>
-				<p class="card-text">Members</p>			  
+			    {% for user in channel.users.all %}
+				<p class="card-text">{{ user }}</p>
+				{% endfor %}
 			  </div>
 			</div>
 		</div>
-		<div class="col-md-8">
+		<div class="col-md-7 ml-5">
 			
 
 		<ul class="list-group list-group-item-light">
+
 			{% for message in messages %}
-		  <li class="list-group-item list-group-item-primary d-flex justify-content-between align-items-center">
+		  <li class="list-group-item {% if message.author_id != user.id %}list-group-item-light{% else %} list-group-item-dark {% endif %} d-flex justify-content-between align-items-center">
+		  	{{ message.author.user }} says: 
 			{{ message.text }}  
 			<span class="badge badge-primary badge-pill">{{ message.pub_date }}</span>
   			</li>
